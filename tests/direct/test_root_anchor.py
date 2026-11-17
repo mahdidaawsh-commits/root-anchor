@@ -68,7 +68,7 @@ def test_cache_fields_and_answer_order_do_not_change_consensus(direct_vm, direct
     mock(direct_vm, com, root)
     assert direct_vm.run_validator() is True
     forged = {key: value for key, value in record.items() if key != 'observed_at'}
-    forged['ds'][0]['digest'] = 'aa' * 32
+    forged['ds'] = [{**record['ds'][0], 'digest': 'aa' * 32}, *record['ds'][1:]]
     assert direct_vm.run_validator(leader_result=forged) is False
     with direct_vm.expect_revert('No newer delegation evidence'):
         contract.refresh('com')
