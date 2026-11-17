@@ -22,3 +22,5 @@ node --test tests/rpc-preflight.test.cjs
 ```
 
 Direct tests use signed DNS fixtures with a fixed clock. They cover signature mutation, owner substitution, anchor removal, expiry, and duplicate observations. The StudioNet verifier separately fetches the live DS sets, verifies the onchain signatures again with dnspython, checks decoded signed calldata, and reads checkpoint state after each transaction. Generic CLI transport is reused under MIT.
+
+[StudioNet proofs](proofs/README.md) · [Submission text](SUBMISSION.md).
