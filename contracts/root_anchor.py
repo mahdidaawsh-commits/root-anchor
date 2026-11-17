@@ -234,8 +234,7 @@ class RootAnchor(gl.Contract):
                     fail('Conflicting delegation at same inception')
                 if candidate['expires'] <= previous['expires']:
                     fail('No newer delegation evidence')
-        candidate['observed_at'] = now
-        self.checkpoints[name] = encode(candidate)
+        self.checkpoints[name] = encode({**candidate, 'observed_at': now})
 
     @gl.public.view
     def get_checkpoint(self, tld: str) -> dict:
